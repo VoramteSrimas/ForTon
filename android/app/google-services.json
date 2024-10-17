@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953642408480",
+    "project_id": "food-scan704",
+    "storage_bucket": "food-scan704.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953642408480:android:1682ff8f290abd1563ba45",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_food_scan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6KZw2T0xEjUPoYcUSHjo3B1WUc8SHB30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
