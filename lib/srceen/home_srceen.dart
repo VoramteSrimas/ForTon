@@ -1,51 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_food_scan/srceen/camera.dart';
 
-class HomeSrceen extends StatefulWidget {
+class HomeSrceen extends StatelessWidget {
   const HomeSrceen({super.key});
 
   @override
-  State<HomeSrceen> createState() {
-    return _HomeSreenState();
-  }
-}
-
-class _HomeSreenState extends State<HomeSrceen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      body: Center(
-        child: SingleChildScrollView(
+      appBar: AppBar(
+        title: const Text('Home Screen'),
+        backgroundColor: Colors.green, // สีของ AppBar
+      ),
+      body: Container(
+        color: Colors.amber[100], // สีพื้นหลังของหน้า
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // รูปภาพข้างบนสุด
               Container(
-                margin: const EdgeInsets.only(
-                  top: 30,
-                  bottom: 20,
-                  left: 20,
-                  right: 20,
+                margin: const EdgeInsets.only(bottom: 20), // เว้นระยะด้านล่าง
+                child: Image.asset(
+                  'assets/images/calories.png', // path ของรูปภาพ
+                  width: 200, // กำหนดขนาดความกว้าง
+                  height: 200, // กำหนดขนาดความสูง
+                  fit: BoxFit.cover, // จัดการขนาดของรูปภาพให้พอดี
                 ),
-                width: 200,
-                child: Image.asset('assets/images/calories.png'),
               ),
               ElevatedButton(
-                onPressed: () {
-                  // Action when button is pressed
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const CameraScreen()),
-                  );
-                },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                  textStyle: const TextStyle(fontSize: 32),
+                  backgroundColor: Colors.indigo, // สีพื้นหลังของปุ่ม
+                  foregroundColor: Colors.white,    // สีตัวอักษรของปุ่ม
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), // ขนาดของปุ่ม
+                  textStyle: const TextStyle(fontSize: 18), // ขนาดตัวอักษร
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10), // ทำให้ปุ่มมีขอบโค้งมน
                   ),
                 ),
-                child: const Text('เริ่มต้นการใช้งาน'),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/upload');
+                },
+                child: const Text('Go to Upload Screen'),
+              ),
+              const SizedBox(height: 20), // เว้นระยะห่างระหว่างปุ่ม
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.indigo, // สีพื้นหลังของปุ่ม
+                  foregroundColor: Colors.white,     // สีตัวอักษรของปุ่ม
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), // ขนาดของปุ่ม
+                  textStyle: const TextStyle(fontSize: 18), // ขนาดตัวอักษร
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), // ทำให้ปุ่มมีขอบโค้งมน
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/camera');
+                },
+                child: const Text('Go to Camera Screen'),
               ),
             ],
           ),
