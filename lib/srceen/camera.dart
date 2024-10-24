@@ -18,7 +18,6 @@ Map<String, int> calorieData = {
   'โจ๊ก': 160,
   'แกงจืด': 110,
   'ต้มยำกุ้ง': 873,
-  // เพิ่มข้อมูลอาหารและแคลอรี่ที่ต้องการได้ที่นี่
 };
 
 class Camera extends StatefulWidget {
@@ -32,14 +31,12 @@ class _CameraState extends State<Camera> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
   String _result = "Result will be displayed here";
-
   late final ImageLabeler _imageLabeler;
 
   @override
   void initState() {
     super.initState();
     loadModel(); // เรียกใช้ฟังก์ชันการโหลดโมเดลเมื่อเริ่มต้น
-
   }
 
   // ฟังก์ชันการโหลดโมเดลจาก assets
@@ -52,7 +49,6 @@ class _CameraState extends State<Camera> {
     _imageLabeler = ImageLabeler(options: options);
   }
 
-  // ฟังก์ชันการดึง path ของโมเดลจาก assets
   Future<String> getModelPath(String asset) async {
     final path = '${(await getApplicationSupportDirectory()).path}/$asset';
     await Directory(dirname(path)).create(recursive: true);
@@ -78,11 +74,10 @@ class _CameraState extends State<Camera> {
 
     setState(() {
       _result = labels.where((label) {
-        // ตรวจสอบชื่ออาหารใน calorieData โดยแปลงเป็นตัวพิมพ์เล็ก
         return calorieData.containsKey(label.label.toLowerCase());
       }).map((label) {
-        String foodName = label.label.toLowerCase(); // ใช้ตัวพิมพ์เล็กทั้งหมดเพื่อให้ตรงกับรายการ
-        int calories = calorieData[foodName] ?? 0; // หากไม่มีข้อมูลแคลอรี่ให้เป็น 0
+        String foodName = label.label.toLowerCase(); 
+        int calories = calorieData[foodName] ?? 0; 
         return "$foodName: ${(label.confidence * 100).toStringAsFixed(2)}% confidence\nCalories: $calories kcal";
       }).join("\n\n");
     });
@@ -142,16 +137,16 @@ class _CameraState extends State<Camera> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo, // สีพื้นหลังของปุ่ม
-                    foregroundColor: Colors.white, // สีตัวอักษรของปุ่ม
+                    backgroundColor: Colors.indigo, 
+                    foregroundColor: Colors.white, 
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 15), // ขนาดปุ่ม
+                        horizontal: 40, vertical: 15), 
                     textStyle: const TextStyle(fontSize: 18),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // ขอบโค้งมน
+                      borderRadius: BorderRadius.circular(10), 
                     ),
                     shadowColor: Colors.black,
-                    elevation: 5, // เพิ่มเงาปุ่ม
+                    elevation: 5, 
                   ),
                   onPressed: pickImageFromGallery,
                   child: const Text('Select Image from Gallery'),
@@ -159,16 +154,16 @@ class _CameraState extends State<Camera> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigo, // สีพื้นหลังของปุ่ม
-                    foregroundColor: Colors.white, // สีตัวอักษรของปุ่ม
+                    backgroundColor: Colors.indigo,
+                    foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 40, vertical: 15), // ขนาดปุ่ม
+                        horizontal: 40, vertical: 15),
                     textStyle: const TextStyle(fontSize: 18),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10), // ขอบโค้งมน
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     shadowColor: Colors.black,
-                    elevation: 5, // เพิ่มเงาปุ่ม
+                    elevation: 5,
                   ),
                   onPressed: captureImageFromCamera,
                   child: const Text('Capture Image from Camera'),

@@ -41,6 +41,7 @@ dependencies:
   path_provider: ^2.1.4
   path: any
   google_mlkit_image_labeling: ^0.13.0
+  flutter_riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:
