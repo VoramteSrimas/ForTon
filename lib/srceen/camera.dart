@@ -1,7 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 // ตัวอย่างข้อมูลแคลอรี่ของอาหาร
 Map<String, int> calorieData = {
@@ -35,12 +38,13 @@ class _CameraState extends State<Camera> {
   @override
   void initState() {
     super.initState();
-    _initializeImageLabeler(); // เรียกใช้ฟังก์ชันการโหลดโมเดลเมื่อเริ่มต้น
+    loadModel(); // เรียกใช้ฟังก์ชันการโหลดโมเดลเมื่อเริ่มต้น
+
   }
 
   // ฟังก์ชันการโหลดโมเดลจาก assets
-  void _initializeImageLabeler() async {
-    final modelPath = await _loadCustomModel();
+  Future<void> loadModel() async {
+    final modelPath = await getModelPath('assets/ml/food_metadata.tflite');
     final options = LocalLabelerOptions(
       confidenceThreshold: 0.5,
       modelPath: modelPath,
@@ -49,9 +53,16 @@ class _CameraState extends State<Camera> {
   }
 
   // ฟังก์ชันการดึง path ของโมเดลจาก assets
-  Future<String> _loadCustomModel() async {
-    // เราต้องระบุตำแหน่งโมเดลใน assets ที่เราใช้
-    return 'assets/model/model.tflite';
+  Future<String> getModelPath(String asset) async {
+    final path = '${(await getApplicationSupportDirectory()).path}/$asset';
+    await Directory(dirname(path)).create(recursive: true);
+    final file = File(path);
+    if (!await file.exists()) {
+      final byteData = await rootBundle.load(asset);
+      await file.writeAsBytes(byteData.buffer
+          .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+    }
+    return file.path;
   }
 
   Future<void> classifyImage(File image) async {
