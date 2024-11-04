@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeSrceen extends StatelessWidget {
-  const HomeSrceen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +29,7 @@ class HomeSrceen extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo, // สีพื้นหลังของปุ่ม
-                  foregroundColor: Colors.white,    // สีตัวอักษรของปุ่ม
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), // ขนาดของปุ่ม
-                  textStyle: const TextStyle(fontSize: 18), // ขนาดตัวอักษร
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // ทำให้ปุ่มมีขอบโค้งมน
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/upload');
-                },
-                child: const Text('Go to Upload Screen'),
-              ),
-              const SizedBox(height: 20), // เว้นระยะห่างระหว่างปุ่ม
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.indigo, // สีพื้นหลังของปุ่ม
-                  foregroundColor: Colors.white,     // สีตัวอักษรของปุ่ม
+                  foregroundColor: Colors.white, // สีตัวอักษรของปุ่ม
                   padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20), // ขนาดของปุ่ม
                   textStyle: const TextStyle(fontSize: 18), // ขนาดตัวอักษร
                   shape: RoundedRectangleBorder(

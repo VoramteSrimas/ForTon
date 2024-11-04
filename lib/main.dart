@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_food_scan/srceen/Upload_srceen.dart';
 import 'package:flutter_application_food_scan/srceen/camera.dart';
 import 'package:flutter_application_food_scan/srceen/home_srceen.dart';
 
@@ -19,8 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeSrceen(),
-        '/upload': (context) => const UploadScreen(),
+        '/': (context) => const HomeScreen(),
         '/camera': (context) => const Camera(),
       },
     );
